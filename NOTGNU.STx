@@ -1,0 +1,150 @@
+
+;
+; Startup file for notGNU emacs (notgnu.st).
+; This form of file can be loaded at anytime using
+; the extended command load-file.
+;
+; no backups please
+;(toggle-make-backups)
+;
+; I like to make sure I don't edit a file in 2 places
+; the default is NOT to check so this turns it on
+;
+(toggle-check-file-timestamp)
+;
+; My UNIX machines hate to see my C source with all those
+; dang CR in them (network shared disks) - default is CR
+; is written for all files on Windows/NT, & DOS. This disables 
+; CR from being written.
+;
+if !DOS (toggle-just-write-newline)
+;
+; Various keybindings to make me happy
+;
+; "\^x" is ctrl-x
+; "\F1" is function key F1
+; "\Eo" is meta-o (or ESC-o)
+; "\Kp-+" is keypad +
+; "\Insert" is a key named Insert
+(set-tab-stop '4)
+(set-use-tab '1);
+(global-set-key "\^i" 'hard-tab)
+(global-set-key "\^x\^f" 'find-all-files)
+(global-set-key "\F1" 'goto-line)
+(global-set-key "\F8" 'other-window)
+(global-set-key "\E+" 'enlarge-window)
+(global-set-key "\E-" 'shrink-window)
+(global-set-key "\^z" 'scroll-one-line-up)
+(global-set-key "\Ez" 'scroll-one-line-down)
+;(global-set-key "\Insert" 'beginning-of-line)
+;(global-set-key "\Delete" 'end-of-line)
+if !DOS (global-set-key "\SBackspace" 'backward-kill-word)
+;
+; Kinda matches VI % match function and gnu emacs
+; ctrl-% match macro I defined
+;
+(global-set-key "\E5" 'goto-match)
+(global-set-key "\^c" 'copy-region-as-kill)
+;
+; these at end since they will fail in DOS version
+; because (1) shell-window is not a legal DOS command
+; and (2) fkeys beyond 10 are not visible
+;
+if !DOS (global-set-key "\F2" 'shell-window)
+(global-set-key "\F3" 'find-first-change)
+(global-set-key "\F4" 'find-next-change)
+if !DOS (global-set-key "\F5" 'win-exec)
+(global-set-key "\F9" 'make)
+(global-set-key "\FS10" previous-error)
+(global-set-key "\F10" 'next-error)
+if !DOS(global-set-key "\F11" 'reread-log-file)
+if !DOS (global-set-key "\F12" 'undo)
+if DOS (global-set-key "\^x-" 'undo)
+;
+(toggle-show-linenumber)   ; line number in mode line
+;
+if !DOS (undo-high-threshold '3000)
+;if !DOS (win-list-buffers)
+;
+(auto-append '0);
+(set-autosave-inc '5)
+if !DOS (global-set-key "\^@" 'set-mark-select)
+if !DOS (set-select-highlight 'f)
+(global-set-key "\Eq" fill-region-as-paragraph)
+  
+; I don't want the keypad to be different then 
+; the top row of numbers 
+if !DOS (set-keypad '0)
+
+if DOS (set-dos-colors '15,11,14,10,0)
+(set-doubleclick '1)
+
+; For windows, click is destructive
+if !DOS (set-focus-click '1)
+(add-file-extension 'C,lsp)
+(add-file-extension 'C,java)
+(add-file-extension 'C,jsp)
+(add-file-extension 'C,cpp)
+(add-file-extension 'C,hpp)
+
+(toggle-smooth-scroll)
+
+if !DOS (win-hints '0)
+
+if !DOS (add-separator-to-popup)
+if !DOS (add-to-popup 'split-window-vertically)
+if !DOS (add-to-popup 'reread-file)
+if !DOS (add-to-popup 'toggle-file-read-only)
+
+(set-write-cr 'n)
+
+(set-case '10)
+
+;if !DOS (toggle-visible-bell)
+
+;(set-windows-clipboard-active '1)
+
+;(global-set-key "\CBackspace" 'undo) ; CTRL-BkSp = undo
+
+(set-search-highlight '1} ; highlight ctrl-s, etc
+
+
+; Begin customized notGNU toolbar 
+if !DOS (clear-toolbar)
+if !DOS (add-to-toolbar 'find-file)
+if !DOS (add-to-toolbar 'save-buffer)
+if !DOS (add-to-toolbar 'save-all-buffers)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'reread-all-changed-files)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'undo)
+if !DOS (add-to-toolbar 'kill-region-to-clipboard)
+if !DOS (add-to-toolbar 'copy-region-to-clipboard)
+if !DOS (add-to-toolbar 'yank-from-clipboard)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'string-search)
+if !DOS (add-to-toolbar 'string-search-replace)
+if !DOS (add-to-toolbar 'egrep)
+if !DOS (add-to-toolbar 'search-forward)
+if !DOS (add-to-toolbar 'search-backward)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'win-dired)
+if !DOS (add-to-toolbar 'switch-to-buffer)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'win-exec)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'start-kbd-macro)
+if !DOS (add-to-toolbar 'end-kbd-macro)
+if !DOS (add-to-toolbar 'call-last-kbd-macro)
+if !DOS (add-to-toolbar 'pop-and-execute-kbd-macro)
+if !DOS (add-space-to-toolbar)
+if !DOS (add-to-toolbar 'fill-region-as-paragraph)
+if !DOS (add-to-toolbar 'shift-region-right)
+if !DOS (add-to-toolbar 'shift-region-left)
+if !DOS (add-to-toolbar 'strip-trailing-blanks-in-region)
+if !DOS (add-space-to-toolbar)
+if !DOS (show-toolbar)
+; End customized notGNU toolbar 
+
+;end of file
+

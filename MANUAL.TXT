@@ -1,0 +1,1139 @@
+
+  ####    ####               ###         ######     ####    ####  ####    ####
+  #####   ####               ###       ##########   #####   ####  ####    ####
+  ######  ####              ####      ####    ####  ######  ####  ####    ####
+  ####### ####   ######   #########   ####          ####### ####  ####    ####
+  ############ ########## #########   #### #######  ############  ####    ####
+  ############ ###    ###   ####      #### #######  ############  ####    ####
+  #### ####### ###    ###   ####      ####    ####  #### #######  ####    ####
+  ####  ###### ###    ###   ####      ####    ####  ####  ######  ####    ####
+  ####   ##### ##########   #########  ##########   ####   #####   ##########
+  ####    ####   ######       ######     ######     ####    ####     ######
+
+
+                              Version 1.95
+                              June, 1999
+                         (Jan 2002 for URL only)
+                         (July 2003 for registry update)
+
+                      R E F E R E N C E   M A N U A L
+
+
+                               %%%%%%%%%%%%
+                           %%%%############%%%%
+         %%%%%%          %%####  ########  ####%%          %%%%%%
+         %%##%%%%      %%####  ############  ####%%      %%%%##%%
+         %%%%%%      %%####  ###    ####   ##  ####%%      %%%%%%
+           %%##%%  %%##########  OO  ##  OO  ########%%  %%##%%
+           %%####%%############      ##      ##########%%####%%
+             %%%%%%#####    #####    ####    ###    ###%%%%%%
+               %%######  ##  ##################  ##  ####%%
+               %%###########                     ########%%
+               %%##############     XXXXXX     ##########%%
+               %%##################          ############%%
+               %%########################################%%
+               %%########################################%%
+               %%########################################%%
+               %%########################################%%
+                %%######################################%%
+                 %%####################################%%
+                  %%##################################%%
+                   %%################################%%
+                     %%############################%%
+                       %%########################%%
+                         %%%%%%############%%%%%%
+                         %%####%%%%%%%%%%%%####%%
+                         %%####%%        %%####%%
+                       %%%%%%%%%%        %%%%%%%%%%
+                     %%########%%        %%########%%
+                     %%%%%%%%%%%%        %%%%%%%%%%%%
+
+
+
+                                _______________
+
+                               TABLE OF CONTENTS
+                                _______________
+
+
+        1.  Introduction ................................................  3
+
+        2.  Configuring notGNU ..........................................  4
+            2.1   Window Settings: Size, Font, Colors, MenuBar ..........  4
+            2.2   Alternative command interpreters ......................  4
+            2.3   Environment variables .................................  5
+            2.4   PIF file settings .....................................  6
+            2.5   Command Line Switches .................................  7
+            2.6   Start-up file: NOTGNU.ST ..............................  8
+
+        3.  Extra Features .............................................. 10
+            3.1   NotStart .............................................. 10
+
+        4.  notGNU Operations ........................................... 11
+            4.1   Mouse Operations ...................................... 11
+            4.2   Killing, Yanking, Cutting, Pasting .................... 12
+            4.3   Rectangle Operations .................................. 12
+            4.4   Autocompletion ........................................ 13
+            4.5   Minibuffer ............................................ 13
+            4.6   Buffer List ........................................... 14
+            4.7   dired ................................................. 14
+            4.8   query-replace, replace-string, set-case ............... 14
+            4.9   undo .................................................. 15
+            4.10  Pulldown and Popup Menus .............................. 15
+            4.11  Toolbar ............................................... 16
+
+        5.  Basic Emacs Command Reference ............................... 16
+
+        6.  Limitations and Bugs ........................................ 21
+
+        7.  Frequently Asked Questions .................................. 23
+
+
+
+    ________________________________________________________________________
+
+                                 _____________
+
+                                1. INTRODUCTION
+                                 _____________
+
+
+    notGNU - This is not the GNU Emacs Editor. A text editor similar to GNU
+    Emacs but much smaller and lighter. 
+
+    The editor was based on MG2a, which was based on the original Conroy
+    emacs. Some of the basics remain the same, but the code has been
+    heavily modified to support the windowing environments, support large
+    files using Windows virtual memory, and to make it's basic editing look
+    more like GNU with a touch of Windows, or to add whatever I needed.
+    Your mileage may vary. 
+
+    I have built it on a number of different Windows, Windows NT/Intel, and
+    Unix machines; others have also successfully compiling it for e.g.
+    Linux and NT/AXP.  Source code for Unix and X11 builds is available,
+    see details later in the manual.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+    I reserve all rights to this software, both in source and binary form.
+    You may freely redistribute it, as long as you do not make any profit
+    from it, or include it in a product sold for profit. If you make
+    modifications and/or bug fixes to the source, please feel obliged to
+    send them to me. I will maintain and support versions I distribute as
+    time and money allows.
+
+    Enjoy and find it useful; that's the overall goal.
+    Donations graciously accepted. Postcards welcome.
+
+    Julie Melbin,            E-mail: <julie AT notgnu.org>
+    P.O.Box 1386,
+    Groton MA 01450
+
+
+                                    __ __ __
+
+    This document was created by Tor Slettnes (Tor can be located at 
+    tor@slett.net) on August 9, 1993; last update was for NotGNU 
+    version 1.95 on June, 1999, by me (Julie) to update the website, 
+    etc information.  The current website url is
+    
+        http://www.notgnu.org
+
+    Comments, suggestions and questions are welcome; please
+    send e-mail to julie@notgnu.org.  Offers to update this
+    document or create/update the windows .hlp file greeted
+    with enthusiasm ;)
+    
+
+                              ___________________
+
+                             2. CONFIGURING NOTGNU
+                              ___________________
+
+
+    After installing notGNU in a directory of your choice, it should be
+    possible to run the editor by typing the name of the executable or
+    double-clicking on the file name (Windows 3.x/95/NT).  notGNU is
+    distributed with a sample start-up file (NOTGNU.ST) that provides some
+    basic default settings as well as some helpful hints on how to customize
+    these.  The following section should provide the information required
+    to customize notGNU further, to suit your individual preferences.
+
+
+    2.1. Window settings: Size, Fonts, Colors, MenuBar
+    __________________________________________________
+
+        [Windows/NT/95 versions only]
+
+        If you click once on the Windows Application Control Menu in the
+        upper left hand corner of the notGNU window, you will see that
+        there are some notGNU specific items in addition to the standard
+        Windows ones.  Use these to control notGNU's menu bar, and "Save
+        Settings".  From the main menu bar, you can control other
+        aspects of notGNU's 'properties'.  "Save Settings" will save
+        current position and size of the window, and disable the
+        "Welcome!" message box from appearing every time you start
+        notGNU.  It also records current font, color choices, and cursor
+        properties as well as some details on select notGNU dialog
+        box windows. 
+
+        The settings will be saved to the file NOTGNU.INI in your Windows
+        directory.  UPDATE 7/1/03  The 32 bit version of notGNU will
+		check for the existance of that file and use any values in
+		there if they are not in the registry.  However, it will save new
+		settings to the Windows' Registry.  The file then will become
+		obsolete; you must manually save to migrate your settings to
+		the registry.
+	
+
+
+    2.2. Using alternative command interpreters
+    ___________________________________________
+
+        If you want to use alternative DOS command shells, such as 4dos or
+        Ndos, for commands like compile, shell-command, and shell-window,
+        you need to do two things:
+            * Specify the MESHELL and MEEXEC environment variables.
+            * Configure the corresponding PIF file.
+
+        The following two sections will explain in further detail how to go
+        about this.
+
+
+    2.3. Environment Variables
+    __________________________
+
+        The following environment variables will be interpreted by notGNU,
+        if present:  HOME, MEHOME, MEEDIT, MEMAKE, MESHELL, and MEEXEC.
+
+        * HOME should point to the directory of your NOTGNU.ST or .notgnu
+          file. Also, notGNU temporary files, such as MExxxxx.LOG and
+          MYMACS.MSG, are stored here.  If you do not set HOME or MEHOME,
+          notStart (See section 3.1: notStart) will not work properly.
+          Default: The directory of your executable.
+
+        * MEHOME, if present, supersedes HOME.
+        
+        * MEEDIT can be used to override the default editor invoked by
+          'notStart'.  Under Windows 3.x,  notStart will normally try to
+          invoke 'wnot.exe', whereas under the 32-bit operating systems
+          Windows NT and Windows 95, it tries to invoke ntnot.exe.
+          MEEDIT can for instance be set to "wnot.exe" to force notStart
+          to always invoke 'wnot.exe'.
+
+        * MEMAKE contains the default command to suggest for compilation.
+          Default: "nmake" under DOS and Windows, and "make" under UNIX.
+        
+        * MESHELL contains the path to the command interpreter or shell
+          for the Windows versions. DNOT uses %COMSPEC% instead.
+          Default: "command.com"
+
+        * MELOG contains the name of the log file. Default is meXXXXX.log, 
+          where XXXXXX is a unique processid (or like).
+
+        * MEEXEC contains a format string used for spawning background
+          processes such as compilation in the Windows versions. Default
+          formats are:
+              Windows NT    "%s /c %s 1>%s 2>&1"
+              Windows 95    "%s /c %s > %s"
+              Windows 3.x   "%s /c %s > %s"
+
+          Each %s is substituted with, in order of appearance:
+              - The command interpreter to use (MESHELL)
+              - The compile command given by the user in the minibuffer
+              - The output log file name (MELOG)
+
+        If you are using 4dos or Ndos, you should insert into your
+        4start.btm/Nstart.btm or autoexec.bat:
+          set MESHELL=%COMSPEC%
+          set MEEXEC=`%s /c %s >& %s`
+        (This will redirect both stdout and stderr to the log file).
+
+
+    2.4. PIF file settings
+    ______________________
+
+        [Windows versions only]
+
+        (The following is important for running background processing
+        under Windows 3.1*; ensuring the modified pif settings for
+        execution priority are set is essential.  For Windows 95 or NT,
+        it is only required that you set MESHELL or SHELL in your
+        environment to effect the shell that notGNU uses to run
+        background processing.  Tasking priority is managed differently in
+        the 32 bit versions of Windows)
+        
+        MESHELL.PIF and COMMAND.PIF are sample Windows Program Information
+        Files that notGNU uses, in the absence of a MESHELL environment
+        variable, to execute shell-window and shell-command.  They are
+        similar to _DEFAULT.PIF, but with increased background priority,
+        execution in background enabled, exclusive execution enabled, and
+        close window on exit.
+
+        It is important that you copy COMMAND.PIF to your Windows directory
+        or the directory of COMMAND.COM if you want background tasks like
+        'compile' to actually RUN in the background under Windows 3.x.
+        Failure to do so means that background jobs will run VERY VERY
+        SLOWLY.  Also if your PIF file does not define "Close Window on
+        Exit", then notGNU can not tell when the spawned task is complete.
+
+
+        If you have specified the MESHELL environment variable, MESHELL.PIF
+        and COMMAND.PIF will not be used. Instead, execution parameters for
+        BOTH shell-command and shell-window will be read from the PIF file
+        that corresponds to the specification in this variable.  Suppose,
+        for instance, that %MESHELL% points to C:\DOS\4DOS\4DOS.COM. You
+        would then have to edit the file C:\DOS\4DOS\4DOS.PIF, so that the
+        following are specified (Use the Windows PIF editor):
+
+            Advanced->Background priority: 90 or more
+            Execution in background      : Yes
+            Close window on exit         : Yes
+
+        Also, make sure that NO start-up directory is specified; otherwise
+        make/compile will not work properly.
+
+        (These are things you should do anyway, even without notGNU).
+
+
+    2.5. Command Line Switches
+    ___________________________
+
+        The following switches can be given as arguments on the command line
+        when starting notGNU.  Non-Un*x versions accept either '/' or '-' as
+        the switch character (ie. /x and -x for the DOS and Windows versions
+        are equivalent). 
+
+        If an argument to a switch consists of more than one word, UNIX
+        shells and 4DOS will recognize double quotes (") to enclose it.
+        COMMAND.COM does not do this; however '_' (underscore) can be
+        substituted for a space, so that 'wnot -f set-default-mode_fill'
+        is equal to (set-default-mode 'fill) in NOTGNU.ST. 
+
+        Available switches are:
+        -x <function>   Causes <function> to be executed after the file(s)
+                        given as arguments on the command line are loaded.
+                        For instance, to open a file in read-only mode, use
+                        the command:
+                            wnot.exe -x toggle-read-only <filename>
+                        This mode will be toggled for the first file only.
+
+        -f <function>   Causes <function> to be executed as soon as notGNU
+                        is started, before any buffers are loaded. Similar
+                        to -f under GNU emacs.  For instance, if you want
+                        to use DNOT as a text editor, start it with the
+                        following command:
+                            dnot.exe -f set-default-mode_fill [filename]
+
+        -p <filename>   [Windows versions only]
+                        Prints file, then exits. Used for Notepad
+                        compatibility.  This  switch will also work with
+                        notStart.
+
+        -v <filename>   View file; do not allow any editing. This switch
+                        will also work with notStart.
+
+        -fg <color>     [X11 only] Text color 
+        -display <name> [X11 only] Display name
+        -bg <color>     [X11 only] Background/Window color
+        -font <font>    [X11 only] Font
+        -fg2 <color>    [X11 only] Touched text color
+        -fg3 <color>    [X11 only] Echoline and highlight color
+        -help           [X11 only] Dumps a message
+
+
+    2.6. Start-up file: NOTGNU.ST
+    _____________________________
+
+        NOTGNU.ST (or .notgnu under Unix) will basically contain commands
+        that you want to be executed at start-up. Most commands that you can
+        execute at run-time, you can also put into this file.
+
+        2.6.1. Basic syntax
+        ___________________
+
+            The basic syntax is similar to GNU Emacs. The commands are
+            enclosed in a pair of parentheses, '(' and ')':
+                (toggle-just-write-newline)
+
+        2.6.2. Arguments
+        ________________
+
+            Any arguments should be preceded by the ' character:
+                (set-window-size '43,80)
+
+        2.6.3. OS dependent configuration
+        _________________________________
+
+            For operating system dependent configuration, use:
+
+                if OS (command)    ; Execute command if running under OS
+                if !OS (command)   ; Execute command if not running under OS
+
+            where OS is one of: DOS, Win3, WinNT, Unix, and X11. Note that
+            the syntax is case sensitive.  Note also that WinNT is currently
+            set for the 32 bit version of notGNU under Windows NT. It will
+            run under Win32s support on Windows 3.1* and under Windows
+            95. If I discover a need to add a special OS id for Windows
+            95, this document will be updated at that time.
+
+            One example: 
+
+                ; Execute if not running DNOT.
+                if !DOS (toggle-just-write-newline)
+
+
+        2.6.4. Comments
+        _______________
+
+            Comments in NOTGNU.ST should be prefixed by a ; (semi-colon).
+
+
+
+        2.6.5. global-set-key
+        _____________________
+
+            It is also very common to specify keyboard commands in
+            NOTGNU.ST. Use the following syntax:
+
+            (global-set-key "\^x!"    'shell-command)           ;C-x !
+            (global-set-key "\e[A"    'previous-line)           ;ESC [ x
+            (global-set-key "\efx"    'save-buffers-kill-emacs) ;Alt-F x
+            (global-set-key "\Insert" 'set-mark-command)        ;Insert key
+            (global-set-key "\e\Backspace" 'backward-kill-word) ;Esc BackSp
+
+            Note that on a PC, Alt-<key> and ESC <key> are nearly equivalent.
+            This is often refered to as the Meta key, for historical
+            reasons and compability with some Unix machine keyboards.
+
+            The following are legal key names on a PC:
+            ----------------------------------------------------------------
+            Gray keypad           | \Insert, \Delete,n
+                                  | \Home, \End, \Page-Up, \Page-Down,
+                                  | \Up-Arrow, \Down-Arrow,
+                                  | \Left-Arrow, \Right-Arrow
+            Ctrl + Gray           | \Control-Home, \Ctrl-End,
+                                  | \Control-PgUp, \Ctrl-PgDn,
+                                  | \Control-Up, \Ctrl-Down,
+                                  | \Control-Left, \Ctrl-Right,
+                                  | \CBackspace, \CDelete
+            Shift + Gray          | \SBackspace, \SDelete
+            Function keys         | \F<n>
+            Shift + F-keys        | \FS<n>
+            Ctrl + F-keys         | \FC<n>
+            Shift + Ctrl + F-keys | \FCS<n>
+            Alt + F-keys          | \FM<n>
+            Keypad characters     | \Kp-+, \Kp--, \Kp-*, \Kp-/, \Kp-.,
+                                  | \Kp-0 .. \Kp-9  [only w/NumLock on]
+            Characters            | <c>
+            Ctrl + Character      | \^<c>
+            Alt + Character       | \e<c>
+            Esc                   | \e
+            Tab                   | \^i
+            ----------------------------------------------------------------
+            <n> is 1-10 for the DOS version, and 1-12 for Windows
+            <c> is a character
+
+
+                                _______________
+
+                               3. EXTRA FEATURES
+                                _______________
+
+    3.1. notStart
+    _____________
+
+        notStart is a boot manager for the Windows 3.x, Windows 95 and
+        Windows NT versions of notGNU.  If you want to run only one instance
+        of notGNU at a time, you can invoke this program rather than
+        WNOT.EXE or NTNOT.EXE.  Starting up NOTSTART.EXE with an
+        argument will import the filename given in the argument into the
+        existing notGNU window; if none exists, notStart will start a
+        new instance of notGNU. 
+        
+        By associating the appropriate file extensions in the File Manager
+        (or Norton Desktop etc.) with NOTSTART.EXE, you will be able to edit
+        the corresponding files by double-click on the file icons, even if
+        notGNU is already running.  Note that the HOME environment variable
+        must be set for this to work correctly.  A small file called
+        MYMACS.MSG will be created in the directory specified by HOME.
+        
+        notStart checks the version of Windows you are running (3.1,
+        95 or NT) and decides whether to run the 16 bit (wnot.exe) or
+        32 bit (ntnot.exe) versions of notGNU. You can override notStart
+        by setting the environment variable MEEDIT.
+
+        Note that the MEHOME or HOME variable needs to be set for this
+        to work correctly.  A small file called MYMACS.MSG will be
+        created by notStart in the directory specified by HOME, and
+        removed by notGNU after reading the specified file.
+
+        Note that notStart, being a 16 bit app, uses only 8.3 DOS
+        names. However, ntnot uses VFAT and NFTS names, and will open
+        the file by it's real case-preserved long name.
+
+        notStart now accepts the following command line switches:
+            /p  Print file, then exit.
+                Syntax: notStart /p [filename]
+            /v  View file (i.e. do not allow any editing).
+                Syntax: notStart /v [filename]
+
+    
+                               __________________
+
+                              4. NOTGNU OPERATIONS
+                               __________________
+
+
+    4.1. Mouse Operations
+    _____________________
+
+        The mouse is now supported in all versions except Unix curses.
+        The DOS version DNOT does not have an external clipboard available,
+        so all clipboard commands apply to the internal kill buffer instead.
+        ____________________________________________________________________
+
+        Set cursor position: Left button down-up at desired position.
+
+        Resize buffer window: Left button down-drag on modeline that
+            separates the buffers (when multiple buffers are displayed).
+
+        delete-other-windows (windowed versions only): Double click left
+            button on modeline of buffer you wish to keep (same as C-x 1
+            while window you wish to be full screen is active).
+
+        Cut or Copy region to killbuffer: Left button down-drag over text to
+            be cut or copied. Mark will be set where dragging started, cursor
+            where it stops. 
+
+        Yank: (DOS version only) Right button down-up at desired position. 
+            See function description (C-h f) for 'toggle-mouse-paste-where'.
+
+        Insert file from drag & drop client: Drag file icon from external
+            application, release button at desired position in notGNU.
+            (Windows/NT only).
+
+        Open new buffer w/file from drag & drop client: Drag file icon from 
+            external application, release button on the modeline, or notGNU
+            icon if minimized. (Windows only).
+            
+        More information on an item in 'apropos' buffer:
+            Double-click on the item. (Windows only).
+
+        Select file from `dired' or buffer from Buffer List: Left button
+            double-click on filename. (Not available in DOS).
+
+        Scrolling: Left button down-drag; move mouse pointer above the top
+            or below the bottom of the screen pane. Wiggling the mouse will
+            slow the scrolling.
+
+
+    4.2. Killing, Yanking, Cutting, Pasting
+    _______________________________________
+
+        The windowed versions of notGNU operate on three different
+        kill-buffers/clipboards for cutting and pasting purposes:
+
+        * The internal kill-buffer, with corresponding kill ring, 
+          consulted on the following commands:
+            - kill-word, kill-line, kill-paragraph, kill-region
+            - copy-region-as-kill
+            - yank, yank-pop
+
+        * A separate buffer for rectangle operations. Use the commands
+          described in section 4.3: Rectangle Operations.
+
+        * The Windows clipboard or X11 cutbuffer 0, consulted on the
+          following commands (DOS version uses internal kill buffer):
+            - kill-region-to-clipboard
+            - copy-region-to-clipboard
+            - yank-from-clipboard.
+            - (Ctrl-) left button down-drag; (Ctrl-) right mouse button.
+
+
+    4.3. Rectangle operations
+    _________________________
+
+        notGNU provides GNU Emacs 19-like rectangle operations. Select a
+        region using the mouse, or set-mark-command followed by a cursor
+        movement; then type one of the following commands:
+            M-x copy-rectangle   ; Copy rectangle between mark and cursor
+            M-x delete-rectangle ; Erase rectangle between mark and cursor
+            M-x kill-rectangle   ; Cut rectangle between mark and cursor
+            M-x clear-rectangle  ; Replace text in rectangle with blanks
+            M-x open-rectangle   ; Insert blanks into the rectangle (*)
+
+        To yank back the rectangle buffer into the text, use
+            M-x yank-rectangle   ; Insert rectangle buffer into text (*)
+
+        (*) TAB characters cause incorrect results in open-rectangle. Also,
+            yank-rectangle will not change the contents of a rectangle to
+            account for any yanking to a different tab offset.  Use tabify
+            and untabify as a work around.
+
+
+
+    4.4. Autocompletion
+    ____________________
+
+        Pretty straightforward; simply press <Space> or <Tab> to complete a
+        filename or a command while typing in the minibuffer. For filenames,
+        <Space> will list all files, while <Tab> will list only directories
+        (useful for quick access to subdirectories in cases where the parent
+        directory contains many files, such as your windows directory). 
+
+        'M-x set-gnu' alters the behavior of file completion such that <Tab>
+        attempts full completion without generating a full dired-completion
+        buffer, thus you lose the step-down-into-directory feature defaulted
+        by notGNU.  <Space> attempts to complete only to token (.,-) when
+        filling in a file name, a'la GNU. It's still not exactly like GNU,
+        but it's closer. 
+
+        Wildcards can be used with autocompletion.  Use "*.TXT <Space>" to
+        list all files with extension `.TXT'.  notGNU can NOT open a file
+        with wildcards in the name (i.e. FO*.BAR will not get you
+        FOO.BAR) unless you specifically use the function
+        find-all-files (which is only available in DOS and Windows/NT
+        versions).
+
+        For Windows NT/95, where long filenames are supported, you can
+        enter a real space (as in c:\Program Files\Some Text File.txt)
+        by typing ctrl-space. Auto completion now works on names with
+        spaces when using ntnot.exe.
+
+
+    4.5. Minibuffer
+    _______________
+
+        The minibuffer now accepts the following commands:
+
+            C-h, Backpace      Delete character to the left of cursor
+            C-d, Delete        Delete character at cursor
+            C-w                Delete word to the left of cursor
+            C-u                Delete to start of line
+            C-k                Delete to end of line
+            C-b, Left arrow    Move cursor left
+            C-f, Right arrow   Move cursor right
+            C-a, Home          Move to start of buffer
+            C-e, End           Move to end of buffer
+
+
+    4.6. Buffer List
+    _________________
+
+        Invoked by M-x list-buffers (C-x C-b).  The following commands are
+        available in the Buffer List:
+
+            u = Use (switch to) this buffer
+            s = Save this buffer
+            k = Kill this buffer
+            
+        Windows/NT/95 versions of notGNU support a dialogbox list of
+        all current buffers. 
+
+
+    4.7. dired
+    ___________
+
+        Invoked by M-x dired (C-x d).  The following commands are available
+        in "dired":
+
+            r = refresh buffer
+            e = edit this file
+            f = find-file
+            v = view-file
+            d = delete this file. Cannot be undone.
+            m = mark for batch processing
+
+
+    4.8. query-replace, replace-string, set-case
+    ____________________________________________
+
+        M-x query-replace (M-%) performs interactive string replacement with
+        user confirmation for each entry, while M-x replace-string performs
+        an unconditional replace.
+
+        The following options are available when prompted whether to replace
+        an occurrence with query-replace:
+
+             !       = unconditionally replace the rest
+             .       = replace this occurrence, and then skip the rest
+             n, DEL  = do not replace this occurrence
+             y, SP   = do replace this occurrence
+             ^G, ESC = quit 'query-replace' mode.
+
+        After being done with one buffer, you have the option of moving to
+        the next buffer, skipping the next, or quitting.
+
+    4.9. Undo
+    _________
+
+        The way undo works is a bit different from GNU emacs. In GNU, an
+        undo operation is itself pushed onto the undo stack. If you do
+        several undos in a row, it will go back in the stack, but if you do
+        another operation in between two undos, it will start over again
+        from the top (and undo your undos). 
+      
+        notGNU has a simpler approach; any undo will simply pop out the last
+        executed operation from the undo stack, and the stack will shrink.
+        Undo also takes an argument; 'C-u 5 M-x undo' will do 5 undos.
+        Undo's are stored on a per buffer basis and edits/undos in one buffer
+        do not effect the state in any other.
+      
+        You can set the maximum depth of the undo stack to some other value
+        than the default 100; use M-x undo-high-threshold.  Increasing the
+        depth increases memory usage, setting the size to 0 disables undo.
+        Saving the file clears the undo stack, you can also clear it by hand
+        with M-x empty-undo-stacks to free some memory.  The amount of
+        memory required for each undo will vary with the complexity of the
+        editing changes you make. For instance, if you upcase a big region,
+        the whole region was saved in its old state.
+
+
+    4.10. Pulldown and Popup menus
+    ______________________________
+
+        Pulldown menus can be toggled on and off with the "Window Menu"
+        items in the application control menu in the upper left corner
+        or the notGNU window.  Once enabled, items in it can be selected
+        by pulling the menus down with the left mouse button. The
+        default menubar has windows accelerator keys (ie alt-f triggers
+        the File menu, etc) but you can disable the alt excelerators by
+        choosing Plain Menu from the application system menu. The
+        settings can be saved from this corner menu or the Properties
+        item on the menu bar.
+
+        A popup menu is also available; by default bound to the right
+        mouse button.  You can add and delete items from this menu,
+        using the following functions:
+        
+            add-separator-to-popup, add-to-popup, clear-popup,
+            default-popup, popup-menu, remove-from-popup, set-popup-button.
+
+        You can get more information on each of via `M-x describe-function'.
+        Hint: Do an 'M-x apropos RET popup RET'; and from the list that
+        now appears, double-click on certain functions to obtain
+        descriptions for them.
+        
+        Use ``M-x set-popup-button'' to select whether the popup menu should
+        be on the left or right mouse button (Default: right). The original
+        function on this button will then be on Ctrl + Button.
+
+
+
+    4.11. Toolbar
+    _____________
+
+        In addition to or instead of the pulldown and popup menus, you
+        can choose to have a toolbar displayed at the top of the
+        screen.  To enable the toolbar, pull down the "Properties"
+        menu, choose "Toolbar", and check the "Show Toolbar" item.
+        To modify its contents, use the functions:
+
+            add-space-to-toolbar, add-to-toolbar, clear-toolbar,
+            default-toolbar, remove-from-toolbar, and show-toolbar
+            
+        You can also do this through an interactive dialogue box,
+        in which case notGNU will automatically insert appropriate
+        statemtents in your startup file (But not save until you
+        confirm).  Choose "Customize Toolbar" from within the
+        "Toolbar" item in the "Properties" menu.
+
+                         ______________________________
+
+                        5. BASIC EMACS COMMAND REFERENCE
+                         ______________________________
+
+
+    This is an overview of some of the more common commands available in
+    notGNU. If you are new to emacs, it may be a good idea to get a hardcopy
+    of the following pages, and keep them next to your workstation.
+
+    Complete function descriptions are available via M-x describe-command,
+    and in the file NOTGNU.FUN. This file is also formatted for printing.
+
+    First a word on notation:
+
+        C-h = Control-H. Hold down the Control key, and press H.
+        M-h = Meta-H. Some computers do indeed have a Meta key, others may
+              label it differently. Look for "Alt", "Extended Char", etc.
+              If your computer does not have such a key, you can use Esc.
+              To obtain M-h, you would press and release Esc, then press H.
+              On a PC, M-h means Alt + H.
+
+        NG  = notGNU specific function, not defined in GNU emacs.
+        HW  = Hardwired (non-bindable) key, cannot be changed.
+        HK  = Hardwired key command, not available as named command via M-x.
+
+        --------------------------------------------------------------------
+                            |
+        C-b, C-f, C-p, C-n  | backward-char, forward-char,
+        or arrow keys       | previous-line, next-line
+                            |    Moves cursor left, right, up, and down.
+                            |
+        M-b, M-f            | backward-word, forward-word
+        C-Left, C-right (NG)|    Moves the cursor one word backward or
+                            |    forward.
+                            |
+        C-a,  C-e           | beginning-of-line, end-of-line
+        or Home, End        |    Moves to the beginning or end of line.
+                            |
+        C-v, M-v            | scroll-up, scroll-down
+        or PgDn, PgUp       |    Jumps one screen full down or up
+                            |
+        C-d                 | delete-char
+        Backspace           | delete-backward-char
+                            |    Delete one character
+                            |
+        C-Up        (HW, NG)| scroll-one-line-down
+        C-Down      (HW, NG)| scroll-one-line-up
+                            |   
+        C-Tab       (HW, NG)| hard-tab
+                            |     Insert a <TAB> character
+                            |
+        Tab             (NG)| half-tab
+                            |    Insert spaces until the next half tab.
+                            |
+        C-@                 | set-mark-command
+        or C-Space          |    Sets the mark at the cursor position, thus
+                            |    defining the start (end) of the region.
+                            |
+        C-g                 | keyboard-quit
+                            |    If you have started a complex command
+                            |    (described below), but you do not want to
+                            |    complete it, this command can be used to
+                            |    abort it.
+                            |
+        C-h                 | [Help prefix]
+        C-h a, C-h b,       | apropos, describe-bindings,
+        C-h c, C-h d        | describe-key-briefly, list-key-names
+        C-h f               | describe-function
+                            |    Various help commands
+                            |    
+        C-k                 | kill-line
+                            |    Cuts to end-of-line if there is anything
+                            |    in it; if not, delete the line itself.
+                            |    Two C-k's deletes a line with text.
+                            |
+        C-l                 | recenter
+                            |    Redraws the screen and places the line with
+                            |    the cursor in the middle. can also be used
+                            |    to clean the screen if it should `mess up'
+                            |    for some reason.
+                            |
+        C-q                 | quoted-insert
+                            |    The next character you type in is inserted
+                            |    no matter if it is a control character or
+                            |    not. If, however, you type C-q and 3 octal
+                            |    digits, the appropriate ascii-code will be
+                            |    inserted. (e.g. C-q 145' would be equivalent
+                            |    to 'e'). 
+                            |
+                            |
+        C-r, C-s            | isearch-backward, isearch-forward
+                            |    Search as you type; and move the cursor to
+                            |    the closest occurrence of the string typed
+                            |    so far.  Note that if you do c-s
+                            |    followed by c-w, the word following is
+                            |    added to the search.
+                            |
+        C-u                 | universal-argument
+                            |    Type in a number and a command, and that
+                            |    command will be executed the appropriate
+                            |    number of times. 'C-u 79 -' will for
+                            |    instance insert 79 hyphens.
+                            |
+        C-w, M-w            | kill-region, copy-region-as-kill
+                            |    Cut or copy the current region between
+                            |    mark and cursor to the kill buffer.
+                            |    See also: C-@ : set-mark-command
+                            |
+        C-y                 | yank
+                            |    `Paste' the text in the kill buffer. Used
+                            |    after cutting with C-k or C-w, or copying
+                            |    with M-w. 
+                            |
+        C-x, C-x 4          | c-x prefix, c-x 4 prefix
+                            |    Special prefix characters, applied to
+                            |    this and other window, respectively.
+                            |
+        C-x C-c             | save-buffers-kill-emacs
+                            |    Exit. If there are modified buffers,
+                            |    emacs will ask if you want to save them.
+                            |
+        C-x C-f             | find-file
+                            |    Load a file into a new buffer. This is
+                            |    one of the most frequently used commands.
+                            |
+        C-x C-l, C-x C-u    | downcase-region, upcase-region
+                            |    Change the case of the text inside region.
+                            |
+        C-x C-s             | save-buffer
+                            |    Save current buffer!
+                            |
+        C-x C-w             | write-file
+                            |    Save current buffer, and prompt for
+                            |    filename. default is `current' name, just
+                            |    like C-x C-s
+                            |
+                            |
+        C-x C-x             | exchange-point-and-mark
+                            |    Put the cursor at the mark, and set the
+                            |    mark where the cursor was.
+                            |
+        C-x b               | switch-to-buffer
+                            |    If editing more than one file, switch to
+                            |    another file.
+                            |
+        C-x i               | insert-file
+                            |    Inserts a file into the current text.
+                            |
+        C-x k               | kill-buffer
+                            |    'Quit' this file.
+                            |
+        C-x o               | other-window
+                            |    Puts the cursor in another window, if any.
+                            |    see split-window-vertically below.
+                            |
+        C-x s               | save-some-buffers
+                            |    Save all modified buffers
+                            |
+        C-x u               | undo
+                            |    Undo the last operation and pop it off
+                            |    the undo stack.
+                            |
+        M-C-Up      (HK, NG)| <no name>
+                            |    Move cursor to previous screen pane
+                            |
+        M-C-Down    (HK, NG)| <no name>
+                            |    Move cursor to next screen pane
+                            |
+        M-%                 | query-replace
+                            |    Replace one string with another, and asks
+                            |    for confirmation every time.
+                            |
+        M-^                 | delete-indentation
+                            |    Join with line above, squish out spaces.
+                            |
+        M-c, M-l, M-u       | capitalize-word, upcase-word, downcase-word
+                            |    Change the case of word under cursor.
+                            |
+        M-d                 | kill-word
+                            |    Cut a word to the internal kill buffer.
+                            |
+                            |
+        M-m             (NG)| delete-line
+                            |    Kill entire line, regardless of pointer
+                            |    position, including trailing newline
+                            |    character.
+                            |
+        M-q                 | fill-paragraph
+                            |    Reorder the text in this paragraph,
+                            |    making the lines fairly adjusted based
+                            |    on fill column.
+                            |
+        M-w                 | copy-region-as-kill
+                            |    See C-w : kill-region
+                            |
+        M-x                 | execute-extended-command
+                            |    Do any emacs command; including the more
+                            |    complex ones that are not assigned to any
+                            |    key or key sequence. To find the current
+                            |    line number, for example, type
+                            |    'M-x what-line'.
+
+                             _____________________
+
+                            6. LIMITATIONS AND BUGS
+                             _____________________
+
+
+    The following is a list of some of notGNU's limitations, and some
+    of its known bugs.  If you discover strange behaviors that are not
+    described here, please report these to the author; her address is
+    listed in the introduction. 
+
+    Size limitations: File size is limited only by the amount of available
+        memory.  Although DNOT endeavors to be a small yet fully functional
+        editor, a typical DOS system (640K) will only have 200-250K
+        available for editing (this limit can be extended slightly by
+        disabling the undo stack). On Unix and Windows versions, file size
+        depends on the amount of virtual memory.  File names should not
+        contain more than 1000 bytes.  Although you can create a buffer with
+        a longer name DOS/Windows 3.1 versions will truncate the name
+        to use the DOS limit of 8 + 3. Also, DOS/Windows 3.1 version files
+        are `limited' to 32,767 characters per line. 
+        
+        Windows 95, or Windows NT running on NTFS or VFAT formatted
+        drives can support filenames longer than 8.3, case preservation,
+        etc, and notGNU in it's 32 bit (NTNOT.EXE) form will recongize and
+        support these extensions. 
+
+    Limited mouse support in DOS version (dnot.exe):
+        o There is no external clipboard available for the DOS version,
+          so mouse operations make use of the internal kill buffer.
+        o Double-click operations are not supported.
+        o The text in the topmost pane/buffer on the screen cannot be
+          scrolled down by highlighting regions with the mouse, since 
+          the mouse cannot move outside the top of the screen.
+
+    No TeX, Lisp or Info: These are currently beyond the scope of
+        notGNU.
+
+    No binary file support: notGNU is designed to run under both
+        Unix and DOS; it reads a file in either format and writes
+        it in desired format. This sometimes means converting ^M^J
+        (carriage-return line-feed) to just  ^J (line-feed) or 
+        vice-versa.
+
+
+    Timestamp checking and write-file: Timestamp checking will not
+        save you from overwriting a file if you use write-file
+        directly. Perhaps the buffer should have a timestamp
+        when created that can be checked against a file?
+
+    Start-up file processing: can be confused. Also, some commands 
+        that require a user action will stop it. Note that if you
+        put (set-fg-color) in the start-up file, that Window's
+        dialog boxes will pop up on Windows 3.x/NT, but X11
+        versions take a command line argument and thus work. In
+        addition, broken syntax may have the incredibly nasty
+        effect of crashing the editor. 
+
+    Norton Desktop Bugs: Drag and drop to an iconized window, as well
+        as printing with the /p flag, do not work properly with Norton
+        Desktop.  Instead, these operations will insert an internal
+        message into the first line in the current buffer.  
+
+    Some keys are hardwired: The hardwired keys are not perfectly
+        friendly, but it was much easier to do a couple things that way.
+
+    Nested load-file does not work: You can not do (load-file foo)
+        inside a start-up file, etc.
+
+    Iconified notGNU disables screen saver?  According to sources, the
+        problem relates to bugs in various Windows video drivers.
+
+    describe-bindings: 'C-h b', or describe-bindings, does not list
+        meta or ESC key bindings properly.
+
+    OS/2 anormalities: notGNU is not compiled for OS/2 and does
+        not recognize "if OS/2" or "!if OS/2" statements running WNOT.EXE
+        under WinOS2 or DNOT.EXE under OS/2 DOS window mode.  
+
+    SunOS anormalities: Sun-OS, as well as some other UNIX clones, do
+        not provide the path of the executable in argv[0];  notGNU will
+        therefore not be able to find the function description file
+        notgnu.fun or any configuration files in this directory.  Use a
+        shell-script or alias to invoke notGNU with full path name to
+        work around.
+
+    Paragraph fill, some key bindings, and other kinds of functions
+    should perform better/faster/different then they do. Ultimately,
+    they work well for me and most folks. Some may find the limitations
+    unacceptable. I really want to fix crashes, etc but not all 'fixes'
+    will find me having enough time. 
+
+                          ___________________________
+
+                         7. FREQUENTLY ASKED QUESTIONS
+                          ___________________________
+
+
+    Q) When running iconized, 'make' and 'compile' are S-L-O-W!
+       (Windows 3.1)
+    A) Copy the file COMMAND.PIF to your windows directory, or if you are
+       using an alternative command interpreter, edit its PIF file.
+       See Section 3.5, MESHELL.PIF, COMMAND.PIF and 3.6, Using an
+       Alternative Command Interpreter.
+
+    Q) How do I list available commands?
+    A) Use ``C-h a'' or ``M-x apropos'', then specify your argument.
+       If you want to list all commands, just press RET.  For more detailed
+       description of a given command, use ``M-x describe-function'', bound
+       to ``C-h f''. Double-click with the mouse also works.
+
+    Q) Why do the some items look the way they do in the window menu?
+    A) The commands look like M-x extended commands, and indeed they they are
+       taken out of the same command table the editor uses. There will probably
+       not be a mode to list the English equivalents. 
+
+    Q) Will there be an extension language?
+    A) Someday maybe. Never say never, but remember this is a small(ish)
+       editor and not everyone has tons of disk or ram. Remember this answer
+       in regards to features which are outside the mainstream. :)
+
+    Q) Is there a way to save macros to disk and/or incorporate them in the
+       NOTGNU.ST file? 
+    A) Do esc-x apropos macros <return> to get the commands. Double
+       click on them to get more info.
+
+    Q) What is the file MYMACS.MSG?
+    A) This is an internal message "batch" file created by notStart, to
+       inform WNOT or NTNOT about files to load etc.
+
+    Q) DOS version doesn't use extended memory.  Can it be changed?
+    A) No and Yes. DOS version now reads bios console size and 
+       set-window-size works . If enough people beat me up and I get a
+       32 bit compiler, other things may also change..
+       
+       At one point, a kind soul was compiling dnot with the Semantic
+       compiler and thus there was dxnot (a full 32 bit editor which
+       could use extended memory). However, this person has moved on in
+       life and I no longer have access to that compiler.
+
+    Q) [Julie:] On a SUN 4, running OS 4.1.3 and X11R5 the editor runs and
+       appears to be the same as that on the HP. I had thought that the
+       mouse cut and paste worked in these versions as they do for the
+       DOS Windows version, however this is not correct, or I do not
+       understand what to do. I can highlight text by dragging the mouse
+       with the left button depressed, but when the button is released
+       the highlight goes away. Also the middle mouse button always drops
+       what is in the standard X-Windows mouse buffer, not was I thought
+       I was marking in the editor window.
+    A) Here's what's going on, I think. Most xterms and newer X11 apps
+       don't use cutbuffer-0 anymore. Well, actually xterms seem to look
+       for both, and x cutbuffer 0 has lower precedence.  On my HP-UX
+       X11R5, if any xterm or other app has a current selection, the
+       behavior you describe occurs.  If I make the xterm lose selection
+       (shows no highlight) then mb1-drag mb2 click pastes as expected.
+       Framemaker however won't look at cutbuffer-0 content, phooie. I'm
+       thinking of `upgrading' notGNU to use the newer X clipboard stuff
+       sometime in the future. 
+
+    Q) notGNU sounded interesting, until I read it doesn't have XXXX
+    A) Thanks for your comment, it will count as a `vote' for further
+       development! :-)
+
+
+
+UPDATE:
+
+From:    Jeff Wilkinson
+To:      julie melbin 
+Date:    Tue, 11 Nov 1997 
+Subject: Re: notgnu documentation
+
+>---------------------
+>
+> BTW, I've found out a little more about desired arguments for calling 
+> ntnot under win95.
+>
+> 1) the command line used for a file association should have the "%1"
+>      c:\somepath\ntnot.exe "%1"
+>
+> 2) a desktop and/or start menu shortcut should not have it
+>     c:\somepath\ntnot.exe
+>
+> If 2) has the "%1", it will open the file c:\%1, which, amazingly 
+> enough, is legal in win95.  So, just starting up ntnot without 
+> trying to give it an initial file would still start as c:\%1.
+> Windows needs the "" around the argument so that it knows to treat
+> paths & filenames with spaces in them as one argument, not several.
+
+-eof-
+
+
+
